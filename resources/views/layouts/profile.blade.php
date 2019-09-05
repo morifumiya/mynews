@@ -41,11 +41,31 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
-
+                            @guest
+                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                            <li class="nav-item dropdown">
+                                <a id="navarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <sapn class="create"></sapn>
+                                </a>
+                                
+                                <div class="dropdown-menu" aria-labelled by="navarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefafult();
+                                    document.grtElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                    
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                            @endguest
                         </ul>
 
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
+                            
                         </ul>
                     </div>
                 </div>
